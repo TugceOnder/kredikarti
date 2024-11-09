@@ -1,0 +1,32 @@
+
+    <div class="field">
+        <label class="label">{{label}}</label>
+        <div class="control">
+       <input class="input" type="text" [formControl]="control"
+       [ngClass]="{'is-danger': showErrors()}"
+       >
+
+        </div>
+      </div>
+
+
+<ng-container *ngIf="control.dirty && control.touched && control.errors">
+    <div class="help is-danger" *ngIf="control.errors['required']">
+        *Zorunlu alan
+    </div>
+    <div class="help is-danger" *ngIf="control.errors['minlength']">
+        Girdiğiniz karakter
+        {{control.errors['minlength']['actualLength']}} 
+        karakter içermektedir, fakat minimum
+        {{control.errors['minlength']['requiredLength']}} karakter olmalıdır
+    </div>
+
+    <div class="help is-danger" *ngIf="control.errors['maxlength']">
+        Girdiğiniz karakter
+        {{control.errors['maxlength']['actualLength']}} 
+        karakter içermektedir, fakat maximum
+        {{control.errors['maxlength']['requiredLength']}} karakter olmalıdır
+    </div>
+</ng-container>
+
+
